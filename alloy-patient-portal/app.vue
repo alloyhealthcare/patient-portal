@@ -40,6 +40,11 @@
               <button
                 type="button"
                 class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Edit Profile
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Request Appointment
               </button>
             </div>
@@ -204,7 +209,7 @@ import {
 
 const cards = [
   { name: "Overdue", href: "#", amount: "Hepatitis B Vaccine", action: "View All Overdue" },
-  { name: "Primary Care Physician", href: "#", amount: "John K. Watson", action: "See All Care Team" },
+  { name: "Primary Care Physician", href: "#", amount: "John K. Watson MD", action: "See All Care Team" },
   { name: "Results", href: "#", amount: "Comprehensive Metabolic Panel", action: "View Results" },
   // More items...
 ];
