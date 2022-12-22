@@ -102,7 +102,7 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   ClockIcon,
   AcademicCapIcon,
@@ -113,6 +113,15 @@ import {
 } from "@heroicons/vue/24/outline";
 
 import { CalendarIcon } from "@heroicons/vue/24/solid";
+
+import { Patient } from "~/types/patients";
+
+const client = useSupabaseClient();
+
+const { data: patient } = await useAsyncData("patient", async () => {
+  const { data } = await client.from("patients").select("name, insruance");
+  return data;
+});
 
 const cards = [
   { name: "Overdue", href: "#", amount: "Hepatitis B Vaccine", action: "View All Overdue" },
