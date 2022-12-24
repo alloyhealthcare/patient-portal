@@ -2,8 +2,10 @@
   <NuxtLayout>
     <div class="mb-6">
       <h2 class="text-lg font-medium leading-6 text-slate-900">Overview</h2>
+      {{ patients?.name }}
       <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card -->
+
         <div v-for="card in cards" :key="card.name" class="overflow-hidden rounded-lg bg-white shadow">
           <div class="p-5">
             <div class="flex items-center">
@@ -114,12 +116,12 @@ import {
 
 import { CalendarIcon } from "@heroicons/vue/24/solid";
 
-import { Patient } from "~/types/patients";
+import { Patient } from "../types/patients";
 
 const client = useSupabaseClient();
 
-const { data: patient } = await useAsyncData("patient", async () => {
-  const { data } = await client.from("patients").select("name, insruance");
+const { data: patients } = await useAsyncData("patients", async () => {
+  const { data } = await client.from("patients").select("name, insurance").eq("name", "Emilia Birch").single();
   return data;
 });
 
