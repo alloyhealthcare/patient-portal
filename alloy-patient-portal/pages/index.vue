@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-3 gap-x-4">
+    <div class="grid grid-cols-3 gap-x-4 pt-12">
       <section aria-labelledby="quick-links-title" class="col-span-2">
         <h2 class="text-lg font-medium leading-6 text-slate-900 mb-4">Manage Your Care</h2>
         <div
@@ -71,7 +71,7 @@
           </div>
         </div>
       </section>
-      <div class="col-span-1 py-12">
+      <div class="col-span-1">
         <h2 class="text-lg font-medium leading-6 text-slate-900 mb-4">Comming Up</h2>
         <div class="overflow-hidden bg-white shadow sm:rounded-md">
           <ul role="list" class="divide-y divide-slate-200">
@@ -128,6 +128,7 @@ const cards = [
   { name: "Primary Care Physician", href: "#", amount: "John K. Watson MD", action: "See All Care Team" },
   { name: "Results", href: "#", amount: "Comprehensive Metabolic Panel", action: "View Results" },
 ];
+
 const positions = [
   {
     id: 1,

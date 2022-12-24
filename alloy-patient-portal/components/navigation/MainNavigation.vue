@@ -28,13 +28,13 @@
             <NuxtLink
               to="/"
               class="inline-flex items-center border-b-2 border-transparent hover:border-slate-300 hover:text-slate-700 text-slate-500 px-1 pt-1 text-sm font-medium"
-              activeClass="border-indigo-500 border-b-2 text-slate-900"
+              exact-active-class="border-indigo-500 border-b-2 text-slate-900"
               >Dashboard</NuxtLink
             >
             <NuxtLink
               to="/visits"
               class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
-              active-class="border-indigo-500 border-b-2 text-slate-900"
+              exact-active-class="border-indigo-500 border-b-2 text-slate-900"
               >Visits</NuxtLink
             >
             <NuxtLink
