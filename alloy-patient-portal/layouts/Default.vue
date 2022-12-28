@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-full bg-white">
     <main-navigation />
-    <patient-header />
+    <div>
+      <slot name="header"></slot>
+    </div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <slot>No Content</slot>
     </div>

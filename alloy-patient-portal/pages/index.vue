@@ -1,8 +1,13 @@
 <template>
   <NuxtLayout>
+    <template v-slot:header>
+      <patient-header
+        :patientName="patients.name"
+        :patientInsurance="patients.insurance"
+        :patientDob="patients.date_of_birth" />
+    </template>
     <div class="mb-6">
       <h2 class="text-lg font-medium leading-6 text-slate-900">Overview</h2>
-      {{ patients?.name }}
       <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card -->
 
@@ -114,14 +119,14 @@ import {
   UsersIcon,
 } from "@heroicons/vue/24/outline";
 
-import { CalendarIcon } from "@heroicons/vue/24/solid";
+import PatientHeader from "~/components/navigation/headers/PatientHeader.vue";
 
-import { Patient } from "../types/patients";
+import { CalendarIcon } from "@heroicons/vue/24/solid";
 
 const client = useSupabaseClient();
 
 const { data: patients } = await useAsyncData("patients", async () => {
-  const { data } = await client.from("patients").select("name, insurance").eq("name", "Emilia Birch").single();
+  const { data } = await client.from("patients").select().limit(1).single();
   return data;
 });
 
