@@ -55,6 +55,7 @@
 import { BuildingOfficeIcon, CalendarDaysIcon } from "@heroicons/vue/20/solid";
 
 export default {
+  name: "Patient Header",
   props: ["patientName", "patientInsurance", "patientDob"],
 };
 </script>

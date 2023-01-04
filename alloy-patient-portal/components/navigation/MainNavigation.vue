@@ -246,6 +246,12 @@
   </Disclosure>
 </template>
 
+<script>
+export default {
+  name: "Main Navigation",
+};
+</script>
+
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
