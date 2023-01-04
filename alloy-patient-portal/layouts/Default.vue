@@ -20,7 +20,12 @@ export default {
     MainNavigation,
     PatientHeader,
   },
+  props: {
+    patientName: String,
+  },
 };
 </script>
+
+<script setup></script>
 
 <style></style>

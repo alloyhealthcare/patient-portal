@@ -52,12 +52,14 @@
 </template>
 
 <script>
-import { BuildingOfficeIcon, CalendarDaysIcon } from "@heroicons/vue/20/solid";
-
 export default {
   name: "Patient Header",
   props: ["patientName", "patientInsurance", "patientDob"],
 };
+</script>
+
+<script setup>
+import { BuildingOfficeIcon, CalendarDaysIcon } from "@heroicons/vue/20/solid";
 </script>
 
 <style></style>
