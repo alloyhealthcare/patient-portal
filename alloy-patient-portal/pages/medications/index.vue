@@ -52,6 +52,20 @@
             </div>
           </div>
         </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <div class="mt-1">
+            <form @submit.prevent="addMedication">
+              <input
+                v-model="newMedication"
+                name="newMedication"
+                type="text"
+                :loading="loading"
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              <button type="submit" variant="white">Add</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div></NuxtLayout
   >
@@ -60,10 +74,30 @@
 <script setup>
 const client = useSupabaseClient();
 
+const newMedication = ref("");
+const loading = ref(null);
+
 const { data: medications } = await useAsyncData("medications", async () => {
   const { data } = await client.from("medications").select();
   return data;
 });
+
+async function addMedication() {
+  if (newMedication.value.trim().length === 0) {
+    return;
+  }
+  loading.value = true;
+  const { data } = await client
+    .from("medications")
+    .insert({
+      medication_name: newMedication.value,
+    })
+    .select("id, medication_name")
+    .single();
+  medications.value.push(data);
+  newMedication.value = "";
+  loading.value = false;
+}
 </script>
 
 <script>
