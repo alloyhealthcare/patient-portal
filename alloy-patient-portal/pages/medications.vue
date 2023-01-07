@@ -66,8 +66,8 @@
             </form>
           </div>
         </div>
+        <NuxtPage :medication="medications" />
       </div>
-      <NuxtPage />
     </div>
   </NuxtLayout>
 </template>

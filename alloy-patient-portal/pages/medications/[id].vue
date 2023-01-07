@@ -1,5 +1,5 @@
 <template>
-  <div>Medication {{ medications.medication_name }}</div>
+  <div>Medication {{ $route.params.id }} {{ medications.medication_name }}</div>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@ const id = route.params.id;
 const client = useSupabaseClient();
 
 const { data: medications } = await useAsyncData("medications", async () => {
-  const { data } = await client.from("medications").select().match({ id: id }).single();
+  const { data } = await client.from("medications").select().single().match({ id: id });
   return data;
 });
 </script>
@@ -17,6 +17,12 @@ const { data: medications } = await useAsyncData("medications", async () => {
 <script>
 export default {
   name: "Medication Detail",
+  props: {
+    medication: {
+      name: String,
+      id: Number,
+    },
+  },
 };
 </script>
 

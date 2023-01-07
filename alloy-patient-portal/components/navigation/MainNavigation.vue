@@ -27,20 +27,19 @@
             <!-- Current: "border-indigo-500 text-slate-900", Default: "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700" -->
             <NuxtLink
               to="/"
-              class="inline-flex items-center border-b-2 border-transparent hover:border-slate-300 hover:text-slate-700 text-slate-500 px-1 pt-1 text-sm font-medium"
+              class="inline-flex items-center border-solid border-b-2 border-transparent hover:border-slate-300 hover:text-slate-700 text-slate-500 px-1 pt-1 text-sm font-medium"
               exact-active-class="border-indigo-500 border-b-2 text-slate-900"
               >Dashboard</NuxtLink
             >
             <NuxtLink
               to="/visits"
-              class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
+              class="inline-flex items-center border-b-2 px-1 pt-1 text-sm border-transparent font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
               exact-active-class="border-indigo-500 border-b-2 text-slate-900"
               >Visits</NuxtLink
             >
             <NuxtLink
-              to="/medications"
-              class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
-              activeClass="border-indigo-500 text-slate-900"
+              to="/medications/"
+              class="inline-flex items-center border-solid border-b-2 px-1 pt-1 border-transparent text-sm font-medium hover:border-slate-300 hover:text-slate-700"
               >Medications</NuxtLink
             >
             <NuxtLink
