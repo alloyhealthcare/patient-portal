@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout>
+  <NuxtLayout :currentPage="thispage">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
@@ -72,6 +72,10 @@
 
 <script setup>
 const client = useSupabaseClient();
+
+const route = useRoute();
+
+const thispage = route.path;
 
 const newMedication = ref("");
 const loading = ref(null);

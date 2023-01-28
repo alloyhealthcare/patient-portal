@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-full bg-white">
-    <main-navigation />
+    <main-navigation :currentPage="currentPage" />
     <div>
       <slot name="header"></slot>
     </div>
@@ -19,6 +19,11 @@ export default {
   components: {
     MainNavigation,
     PatientHeader,
+  },
+  props: {
+    currentPage: {
+      type: String,
+    },
   },
 };
 </script>

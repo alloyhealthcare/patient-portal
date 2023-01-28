@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLayout>
+    <NuxtLayout :currentPage="thispage">
       <template v-slot:header>
         <patient-header
           :patientName="patients.name"
@@ -89,18 +89,15 @@
             <ul role="list" class="divide-y divide-slate-200">
               <li v-for="position in positions" :key="position.id">
                 <a href="#" class="block hover:bg-slate-50">
-                  <div class="px-4 py-4 sm:px-6">
+                  <div class="px-4 py-4 sm:px-6 flex flex-row items-center justify-between">
                     <div class="flex items-center justify-between">
                       <p class="truncate text-sm font-medium text-indigo-600">{{ position.title }}</p>
                     </div>
                     <div class="mt-2 sm:flex sm:justify-between">
-                      <div class="sm:flex"></div>
-                      <div class="mt-2 flex items-center text-sm text-slate-500 sm:mt-0">
+                      <div class="flex items-center text-sm text-slate-500 sm:mt-0">
                         <CalendarIcon class="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400" aria-hidden="true" />
                         <p>
-                          Closing on
-                          {{ " " }}
-                          <time :datetime="position.closeDate">{{ position.closeDateFull }}</time>
+                          <time :datetime="position.closeDateFull">{{ position.closeDateFull }}</time>
                         </p>
                       </div>
                     </div>
@@ -123,16 +120,24 @@ import {
   CheckBadgeIcon,
   ReceiptRefundIcon,
   UsersIcon,
+  ChartBarIcon,
+  ChatBubbleBottomCenterIcon,
+  ChatBubbleLeftEllipsisIcon,
+  DocumentCheckIcon,
 } from "@heroicons/vue/24/outline";
 
 import PatientHeader from "~/components/navigation/headers/PatientHeader.vue";
 
 import { CalendarIcon } from "@heroicons/vue/24/solid";
 
+const route = useRoute();
+
+const thispage = route.path;
+
 const client = useSupabaseClient();
 
 const { data: patients } = await useAsyncData("patients", async () => {
-  const { data } = await client.from("patients").select().limit(1).single();
+  const { data } = await client.from("patients").select("*").limit(1).single();
   return data;
 });
 
@@ -145,49 +150,32 @@ const cards = [
 const positions = [
   {
     id: 1,
-    title: "Back End Developer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Engineering",
-    closeDate: "2020-01-07",
+    title: "Annual Physical",
     closeDateFull: "January 7, 2020",
   },
   {
     id: 2,
-    title: "Front End Developer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Engineering",
-    closeDate: "2020-01-07",
-    closeDateFull: "January 7, 2020",
-  },
-  {
-    id: 3,
-    title: "User Interface Designer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Design",
-    closeDate: "2020-01-14",
-    closeDateFull: "January 14, 2020",
+    title: "Refill Lisinopril",
+    closeDateFull: "January 15, 2020",
   },
 ];
 const actions = [
   {
-    icon: ClockIcon,
+    icon: UsersIcon,
     name: "View Care Team",
     href: "#",
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
   },
   {
-    icon: CheckBadgeIcon,
+    icon: ChatBubbleLeftEllipsisIcon,
     name: "Ask a Question",
     href: "#",
     iconForeground: "text-purple-700",
     iconBackground: "bg-purple-50",
   },
   {
-    icon: UsersIcon,
+    icon: ChartBarIcon,
     name: "Track My Health",
     href: "#",
     iconForeground: "text-sky-700",
@@ -201,8 +189,8 @@ const actions = [
     iconBackground: "bg-yellow-50",
   },
   {
-    icon: ReceiptRefundIcon,
-    name: "Submit an expense",
+    icon: DocumentCheckIcon,
+    name: "Health Summary",
     href: "#",
     iconForeground: "text-rose-700",
     iconBackground: "bg-rose-50",

@@ -26,32 +26,16 @@
           <div class="hidden md:ml-6 md:flex md:space-x-8">
             <!-- Current: "border-indigo-500 text-slate-900", Default: "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700" -->
             <NuxtLink
-              to="/"
-              class="inline-flex items-center border-solid border-b-2 border-transparent hover:border-slate-300 hover:text-slate-700 text-slate-500 px-1 pt-1 text-sm font-medium"
-              exact-active-class="border-indigo-500 border-b-2 text-slate-900"
-              >Dashboard</NuxtLink
+              v-for="page in pages"
+              :to="page.href"
+              :class="{ 'border-indigo-500 border-b-2  text-slate-900': currentPage === pages.href }"
+              class="inline-flex items-center border-b-2 px-1 pt-1 border-transparent text-sm font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
+              >{{ page.name }}</NuxtLink
             >
-            <NuxtLink
-              to="/visits"
-              class="inline-flex items-center border-b-2 px-1 pt-1 text-sm border-transparent font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
-              exact-active-class="border-indigo-500 border-b-2 text-slate-900"
-              >Visits</NuxtLink
-            >
-            <NuxtLink
-              to="/medications/"
-              class="inline-flex items-center border-solid border-b-2 px-1 pt-1 border-transparent text-sm font-medium hover:border-slate-300 hover:text-slate-700"
-              >Medications</NuxtLink
-            >
-            <NuxtLink
-              to="/messages"
-              class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-slate-500 hover:border-slate-300 hover:text-slate-700"
-              active-class="border-indigo-500 text-slate-900"
-              >Messages</NuxtLink
-            >
-            <Menu as="div" class="relative self-center">
-              <div>
+            <Menu as="div" class="relative h-full">
+              <div class="h-full">
                 <MenuButton
-                  class="flex rounded-full space-x-2 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  class="flex h-full items-center space-x-2 bg-white text-sm font-medium border-b-2 border-transparent pt-1 text-slate-500 hover:border-slate-300 hover:text-slate-700">
                   <span class="sr-only">Open user menu</span>
                   <span class="text-sm font-medium text-slate-500">More</span>
                   <EllipsisHorizontalIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
@@ -67,6 +51,7 @@
                 <MenuItems
                   class="absolute divide-y divide-slate-100 left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div>
+                    <div class="text-xs font-semibold uppercase px-4 pt-2 pb-1 text-slate-500">Find Care</div>
                     <MenuItem v-slot="{ active }">
                       <a href="#" :class="[active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700']"
                         >Care Team</a
@@ -255,4 +240,20 @@ export default {
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { PlusIcon, EllipsisHorizontalIcon } from "@heroicons/vue/20/solid";
+
+const pages = [
+  { name: "Dashboard", href: "/" },
+  { name: "Visits", href: "/visits" },
+  { name: "Messages", href: "/messages" },
+  { name: "Medications", href: "/medications" },
+];
+
+const props = defineProps({
+  currentPage: {
+    type: String,
+    required: true,
+  },
+});
+
+// const isActive = this.route.params.path === pages.href;
 </script>
